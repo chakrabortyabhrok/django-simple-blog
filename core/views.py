@@ -22,7 +22,7 @@ def contact_page(request):
     return HttpResponse("<h1>Contact Page</h1><p>Email: example@gmail.com</p>")
 
 def services_page(request):
-    return HttpResponse("<h1>Our Services</h1><ul><li>Web Development<li><li>AI Integration<li></ul>")
+    return HttpResponse("<h1>Our Services</h1><ul><li>Web Development</li><li>AI Integration</li></ul>")
 
 def dynamic_year(request, year):
     return HttpResponse(f"<h1>Year: {year}</h1><p>This is a dynamic page for {year}</p>")
