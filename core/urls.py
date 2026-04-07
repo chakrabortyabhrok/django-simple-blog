@@ -14,4 +14,5 @@ urlpatterns = [
     path('contact/', views.contact_page, name='contact_page'),
     path('services/', views.services_page, name='services_page'),
     path('year/<int:year>/', views.dynamic_year, name='dynamic_year'),
+    path('home/', views.home_page, name='home_page'),
 ]
