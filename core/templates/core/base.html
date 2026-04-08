@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django Templates{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        header { background: #333; color: white; padding: 20px; text-align: center; }
+        footer { margin-top: 50px; text-align: center; color: #777; }
+    </style>
+</head>
+<body>
+    <header>                                       <!-- Line 7: Common header that every page will inherit -->
+        <h1>My Django Learning Project</h1>
+        <nav>
+            <a href="{% url 'core:home_page' %}">Home</a> &nbsp;|&nbsp;
+            <a href="{% url 'core:about_page' %}">About</a>
+        </nav>
+    </header>
+
+    {% block content %}                            <!-- Line 9: This is the magic block. Child templates will put their unique content here -->
+        <p>Default content goes here if child doesn't override.</p>
+    {% endblock %}                                 <!-- Line 10: Ends the content block -->
+
+    <footer>                                       <!-- Line 11: Common footer that appears on every page -->
+        <p>&copy; 2026 - Week 9 Day 2 - Template Inheritance</p>
+    </footer>
+</body>
+</html>

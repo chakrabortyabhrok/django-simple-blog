@@ -4,6 +4,9 @@ from django.shortcuts import render
 def home_page(request):
     return render(request, 'core/home.html')
 
+def about_page(request):
+    return render(request, 'core/about.html')
+
 def hello_world(request):
     return HttpResponse("<h1>Hello World from Django!</h1>")
 
@@ -18,9 +21,6 @@ def blog_post(request, slug):
 
 def test_routing(request):
     return HttpResponse(f"<h1>URL Routing is working perfectly!<h1>")
-
-def about_page(request):
-    return HttpResponse("<h1>About Us</h1><p>This is a simple Django learning project.</p>")
 
 def contact_page(request):
     return HttpResponse("<h1>Contact Page</h1><p>Email: example@gmail.com</p>")
