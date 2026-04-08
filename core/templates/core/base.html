@@ -6,12 +6,12 @@
     <title>{% block title %}Django Templates{% endblock %}</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 40px; }
-        header { background: #333; color: white; padding: 20px; text-align: center; }
-        footer { margin-top: 50px; text-align: center; color: #777; }
+        header { background: #8bb1f8; color: black; padding: 20px; text-align: center; }
+        footer { margin-top: 50px; text-align: center; color: #bb2020; }
     </style>
 </head>
 <body>
-    <header>                                       <!-- Line 7: Common header that every page will inherit -->
+    <header>
         <h1>My Django Learning Project</h1>
         <nav>
             <a href="{% url 'core:home_page' %}">Home</a> &nbsp;|&nbsp;
@@ -19,12 +19,12 @@
         </nav>
     </header>
 
-    {% block content %}                            <!-- Line 9: This is the magic block. Child templates will put their unique content here -->
+    {% block content %}
         <p>Default content goes here if child doesn't override.</p>
-    {% endblock %}                                 <!-- Line 10: Ends the content block -->
+    {% endblock %}
 
-    <footer>                                       <!-- Line 11: Common footer that appears on every page -->
-        <p>&copy; 2026 - Week 9 Day 2 - Template Inheritance</p>
+    <footer>
+        <p>&copy; 2026 - Day 2 of Learning Django - Template Inheritance</p>
     </footer>
 </body>
 </html>

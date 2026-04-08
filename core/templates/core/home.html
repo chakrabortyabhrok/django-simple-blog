@@ -1,9 +1,9 @@
-{% extends 'core/base.html' %}                     <!-- Line 1: This tells Django: "Use base.html as parent template" -->
+{% extends 'core/base.html' %}
 
-{% block title %}Home - Django Templates{% endblock %}   <!-- Line 2: Overrides the title block from base.html -->
+{% block title %}Home - Django Templates{% endblock %}
 
-{% block content %}                                <!-- Line 3: Overrides the content block -->
+{% block content %}
     <h1>Welcome to Django Templates!</h1>
     <p>This page is coming from home.html but the layout is inherited from base.html.</p>
     <p>Today is Day 2 in Django Developement Roadmap — Template Inheritance.</p>
-{% endblock %}                                     <!-- Line 4: Ends the content block -->
+{% endblock %}
