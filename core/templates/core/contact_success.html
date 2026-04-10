@@ -1,0 +1,8 @@
+{% extends 'core/base.html' %}
+{% block title %}Message Sent{% endblock %}
+{% block content %}
+    <h1>Thank You!</h1>
+    <p>Your message has been received successfully.</p>
+    <a href="{% url 'core:contact_page' %}">Send another message</a>
+{% endblock %}
+
