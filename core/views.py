@@ -35,6 +35,7 @@ def dynamic_year(request, year):
 def contact_page(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
+
         if form.is_valid():
             print("✅ Form submitted successfully!")
             print(form.cleaned_data)
@@ -42,4 +43,4 @@ def contact_page(request):
         
     else:
         form = ContactForm()
-        return render(request, 'core/contact_success.html', {'form' : form})
+    return render(request, 'core/contact.html', {'form' : form})
