@@ -28,7 +28,7 @@ class ContactForm(forms.Form):
         }
     )
     message = forms.CharField(
-        min_length=20,
+        min_length=5,
         widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5, 'placeholder': 'Write your message here...'}),
         error_messages={
             'required': 'Message is required',
