@@ -3,8 +3,8 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #9785ff;
-    color: #333;
+    background: linear-gradient(135deg, #9c66d6, #5996ff);
+    color: #252525;
 }
 
 header {
@@ -17,7 +17,7 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 2.2rem;
 }
 
 nav a {
@@ -33,13 +33,13 @@ nav a:hover {
 }
 
 .content {
-    max-width: 800px;
-    margin: 40px auto;
+    max-width: 850px;
+    margin: 50px auto;
     padding: 0 20px;
-    background: white;
+    background: rgb(188, 187, 255);
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    min-height: 60vh;
+    min-height: 78vh;
 }
 
 footer {
@@ -51,10 +51,10 @@ footer {
 }
 
 .form-control {
-    width: 100%;
+    width: 96%;
     padding:12px 15px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
+    margin-bottom: 17px;
+    border: 1px solid #ab8cff;
     border-radius: 8px;
     font-size: 1rem;
 }
@@ -67,7 +67,7 @@ footer {
 
 .btn-primary {
     background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 12px 30px;
     border: none;
     border-radius: 8px;
@@ -76,7 +76,7 @@ footer {
     transition: all 0.3s ease;
 }
 .btn-primary:hover {
-    transform: translateY(-2px);
+    transform: translateY(-6px);
     box-shadow: 0 6px 12px rgba(106, 17, 203, 0.3);
 }
 
