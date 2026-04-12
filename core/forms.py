@@ -3,7 +3,7 @@ from django import forms
 class ContactForm(forms.Form):
     name = forms.CharField(
         max_length=80,
-        min_lenght=3,
+        min_length=3,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your full name'}),
         error_messages={
             'required': 'Name is required.',
@@ -19,7 +19,7 @@ class ContactForm(forms.Form):
     )
     subject = forms.CharField(
         max_length=20,
-        min_lenght=5,
+        min_length=5,
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Subject'}),
         error_messages={
             'required': 'Subject is required.',
