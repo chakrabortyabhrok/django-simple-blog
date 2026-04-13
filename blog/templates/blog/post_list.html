@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <h1>Blog Posts</h1>
+
+    {%for post in posts%}
+        <div>
+            <h2>{{ post.title}}</h2>
+            <p>{{ post.excerpt }}</p>
+            <small>Published on {{ post.date }}</small>
+
+            <a href="{% url 'blog:blog_list' %}">Read More→</a>
+        </div>
+    {% endfor %}
+
+{% endblock %}
