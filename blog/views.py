@@ -1,5 +1,5 @@
+from django.http import HttpResponse
 from django.shortcuts import render
-
 posts = [
     {
         "title": "Morning Yoga for Beginners",
@@ -14,6 +14,7 @@ posts = [
         "title": "How to Bake Perfect Chocolate Chip Cookies",
         "slug": "bake-chocolate-chip-cookies",
         "excerpt": "A foolproof recipe for soft, chewy cookies every time.",
+
         "date": "2026-04-09",
         "content": """The secret to a perfect cookie isn't just the sugar; it's the temperature of your butter. Using room-temperature butter allows it to cream properly with the sugars, creating tiny air pockets that lead to a soft texture.
 
@@ -36,15 +37,6 @@ posts = [
         "content": """You don't need a backyard to be a gardener. Balcony gardening is all about maximizing vertical space. Use hanging planters and tiered shelving to give your plants room to breathe and catch the sunlight.
 
         When selecting plants, consider the 'microclimate' of your balcony. Does it get harsh afternoon sun, or is it mostly shaded? Herbs like basil, mint, and rosemary are incredibly resilient and perfect for beginners. Just make sure your pots have proper drainage to prevent root rot."""
-    },
-    {
-        "title": "Beginner’s Guide to Meditation",
-        "slug": "beginners-meditation-guide",
-        "excerpt": "Learn how to start a daily meditation practice in just 5 minutes.",
-        "date": "2026-04-06",
-        "content": """Meditation is often misunderstood as 'emptying the mind.' In reality, it's about observing the mind. When you sit for five minutes, your goal isn't to stop thinking, but to notice when your thoughts wander and gently bring them back to your breath.
-
-        Find a quiet corner, sit comfortably, and close your eyes. Count your inhalations and exhalations. If you get distracted by a sound or a worry, don't judge yourself—just return to the count. This practice builds a 'muscle' of mindfulness that helps you handle stress better in daily life."""
     },
     {
         "title": "Easy Weeknight Pasta Recipes",
@@ -101,3 +93,10 @@ def about_page(request):
 
 def blog_list(request):
     return render(request, 'blog/post_list.html', {'posts': posts})
+
+def  post_detail(request, slug):
+    post = next((p for p in posts if p['slug'] == slug), None)
+    if post is None:
+        return HttpResponse("404 - Post not found", status=404)
+    else:
+        return render(request, 'blog/post_detail.html', {'post' : post})
