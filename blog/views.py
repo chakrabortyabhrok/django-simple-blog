@@ -98,5 +98,4 @@ def  post_detail(request, slug):
     post = next((p for p in posts if p['slug'] == slug), None)
     if post is None:
         return HttpResponse("404 - Post not found", status=404)
-    else:
-        return render(request, 'blog/post_detail.html', {'post' : post})
+    return render(request, 'blog/post_detail.html', {'post' : post})
