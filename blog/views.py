@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from core.forms import ContactForm
+
 posts = [
     {
         "title": "Morning Yoga for Beginners",
@@ -99,3 +101,16 @@ def  post_detail(request, slug):
     if post is None:
         return HttpResponse("404 - Post not found", status=404)
     return render(request, 'blog/post_detail.html', {'post' : post})
+
+def contact_page(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        
+        if form.is_valid():
+            print("✅ Form submitted successfully!")
+            print(form.cleaned_data)
+            return render(request, 'blog/contact_success.html', {'form' : form})
+        
+    else:
+        form = ContactForm()
+    return render(request, 'blog/contact.html', {'form' : form})

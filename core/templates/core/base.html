@@ -12,10 +12,12 @@
 <body>
     <header>
         <h1>My Django Learning Project</h1>
+        <p></p>
         <nav>
             <a href="{% url 'blog:home' %}">Home</a> &nbsp;|&nbsp;
             <a href="{% url 'blog:about' %}">About</a>&nbsp;|&nbsp;
-            <a href="{% url 'blog:blog_list' %}">Blog</a>
+            <a href="{% url 'blog:blog_list' %}">Blog</a>&nbsp;|&nbsp;
+            <a href="{% url 'blog:contact_page' %}">Contact</a>
         </nav>
     </header>
 

@@ -1,0 +1,11 @@
+{% extends "core/base.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+    <h1>Contact Us</h1>
+    <p class="lead">Have any questions? Send us message and we'll get back to you.</p>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+{% endblock %}
