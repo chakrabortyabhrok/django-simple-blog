@@ -96,11 +96,11 @@ def about_page(request):
 def blog_list(request):
     return render(request, 'blog/post_list.html', {'posts': posts})
 
-def  post_detail(request, slug):
+def post_detail(request, slug):
     post = next((p for p in posts if p['slug'] == slug), None)
     if post is None:
         return HttpResponse("404 - Post not found", status=404)
-    return render(request, 'blog/post_detail.html', {'post' : post})
+    return render(request, 'blog/post_detail.html', {'post':post})
 
 def contact_page(request):
     if request.method == 'POST':
@@ -113,4 +113,4 @@ def contact_page(request):
         
     else:
         form = ContactForm()
-    return render(request, 'blog/contact.html', {'form' : form})
+    return render(request, 'blog/contact.html', {'form':form})
