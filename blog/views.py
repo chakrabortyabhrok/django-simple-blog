@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from core.forms import ContactForm
 
+
 posts = [
     {
         "title": "Morning Yoga for Beginners",
