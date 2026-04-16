@@ -86,3 +86,45 @@ footer {
     margin-bottom: 5px;
     list-style: none;
 }
+
+.post-card {                                      /* Line 1: Wraps each blog post in the list */
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {                                /* Line 2: Hover effect for better UX */
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(106, 17, 203, 0.15);
+}
+
+.post-card h2 {                                   /* Line 3: Makes post titles stand out */
+    margin-top: 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.post-card .excerpt {                             /* Line 4: Styles the short description */
+    color: #555;
+    line-height: 1.6;
+}
+
+.post-card small {                                /* Line 5: Date styling */
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.post-content {                                   /* Line 6: Improves readability of full post content */
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.lead {                                           /* Line 7: Makes subtitles on contact and other pages nicer */
+    font-size: 1.1rem;
+    color: #444444;
+    margin-bottom: 25px;
+}
