@@ -9,5 +9,22 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'published_date']
-    search_fields = ['title', 'excerpt']
-    list_filter = ['category']
+    search_fields = ['title', 'excerpt', 'content']
+    list_filter = ['category', 'published_date']
+    readonly_fields = ['published_date']
+    prepopulated_fields = {'slug': ('title',)}
+
+    fieldsets = [
+        ('Basic Information', {
+            'fields': ('title', 'slug', 'category')
+        }),
+        ('Content', {
+            'fields': ('excerpt', 'content')
+        }),
+        ('Publishing', {
+            'fields': ('published_date',),
+            'classes': ('collapse',)
+        }),
+    ]
+
+    
