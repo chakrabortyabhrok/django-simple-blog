@@ -5,6 +5,7 @@ from .models import Post, Category
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     search_fields = ['name']
+    prepopulated_fields = {'slug': ('name',)}
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'published_date']
