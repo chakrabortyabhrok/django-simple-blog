@@ -1,6 +1,7 @@
 {% extends "core/base.html" %}
 
 {% block content %}
+    <br>
     <h1>Blog Posts</h1>
     <p class="lead">Latest articles and learnings from my Django roadmap</p>
 
@@ -8,12 +9,14 @@
         <div class="post-card">
             <h2>{{ post.title }}</h2>
             <p class="excerpt">{{ post.excerpt }}</p>
-            <small>Published on {{ post.date }}</small>
+            <small>Published on {{ post.published_date }}</small>
             <br><br><br>
             <a href="{% url 'blog:post_detail' post.slug %}" class="btn btn-primary">
                 Read Full Post →
             </a>
+        
         </div>
+        <br>
     {% endfor %}
 
 {% endblock %}

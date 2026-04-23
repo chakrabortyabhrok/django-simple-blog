@@ -54,7 +54,7 @@ footer {
     width: 96%;
     padding:12px 15px;
     margin-bottom: 17px;
-    border: 1px solid #ab8cff;
+    border: 1px solid #ad8fff;
     border-radius: 8px;
     font-size: 1rem;
 }
@@ -67,7 +67,7 @@ footer {
 
 .btn-primary {
     background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: rgb(255, 255, 255);
+    color: rgb(212, 212, 212);
     padding: 12px 30px;
     border: none;
     border-radius: 8px;
@@ -88,7 +88,7 @@ footer {
 }
 
 .post-card {                                      /* Line 1: Wraps each blog post in the list */
-    background: white;
+    background: linear-gradient(135deg, #b398cf, #81afff);
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     padding: 25px;
@@ -103,17 +103,17 @@ footer {
 
 .post-card h2 {                                   /* Line 3: Makes post titles stand out */
     margin-top: 0;
-    color: #333;
+    color: #2b2b2b;
     font-size: 1.5rem;
 }
 
 .post-card .excerpt {                             /* Line 4: Styles the short description */
-    color: #555;
+    color: #3d3d3d;
     line-height: 1.6;
 }
 
 .post-card small {                                /* Line 5: Date styling */
-    color: #888;
+    color: #4b4b4b;
     font-size: 0.9rem;
 }
 
@@ -125,6 +125,6 @@ footer {
 
 .lead {                                           /* Line 7: Makes subtitles on contact and other pages nicer */
     font-size: 1.1rem;
-    color: #444444;
+    color: #333333;
     margin-bottom: 25px;
 }

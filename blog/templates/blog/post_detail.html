@@ -4,17 +4,23 @@
 
 {% block content %}
     <article>
+        <br>
         <h1>{{ post.title }}</h1>
-        <small>Published on {{ post.date }}</small>
+        <small>Published on: {{ post.published_date }}</small>
+        <br>
+        <small>Author: {{post.author}}</small>
         
         <div class="post-content">
             {{ post.content|linebreaks }}
         </div>
         
         <hr>
-        <br><br>
+        <br>
         <a href="{% url 'blog:blog_list' %}" class="btn btn-primary">
             ← Back to All Posts
         </a>
+
+        <br>
+    
     </article>
 {% endblock %}
