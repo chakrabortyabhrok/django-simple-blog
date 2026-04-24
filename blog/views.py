@@ -1,12 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from core.forms import ContactForm
-from .models import Post
-
-
-#posts = [
-    
-#]
+from .models import Post, Category
 
 def home_page(request):
     return render(request, 'blog/home.html')
@@ -15,8 +10,22 @@ def about_page(request):
     return render(request, 'blog/about.html')
 
 def blog_list(request):
-    posts = Post.objects.all()
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    category_slug = request.GET.get('category')
+    
+    categories = Category.objects.all()
+
+    if category_slug:
+        current_category = Category.objects.get(slug=category_slug)
+        posts = Post.objects.filter(category=current_category).order_by('-published_date')
+    else:
+        current_category = None
+        posts = Post.objects.all().order_by('-published_date')
+
+    return render(request, 'blog/post_list.html', {
+        'posts': posts,
+        'categories': categories,
+        'current_category': current_category
+    })
 
 def post_detail(request, slug):
     try:

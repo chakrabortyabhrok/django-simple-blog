@@ -3,7 +3,26 @@
 {% block content %}
     <br>
     <h1>Blog Posts</h1>
-    <p class="lead">Latest articles and learnings from my Django roadmap</p>
+    <div class="category-nav">
+        <hr>
+        <a href="{% url 'blog:blog_list' %}"
+            class="{%if not current_catgory %}active{% endif %}">
+            All Posts
+        </a>
+
+        |
+        
+        {%for category in categories%}
+            <a href="{%url 'blog:blog_list' %}?category={{ category.slug }}"
+                class="{% if current_category and current_category.slug %}active{% endif %}">
+                {{category.name}}
+            </a>
+            |
+        {% endfor %}
+
+        <br><hr><br>
+
+    </div>
 
     {% for post in posts %}
         <div class="post-card">
@@ -16,7 +35,7 @@
             </a>
         
         </div>
-        <br>
+        
     {% endfor %}
 
 {% endblock %}
