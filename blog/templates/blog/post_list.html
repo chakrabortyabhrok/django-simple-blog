@@ -8,16 +8,16 @@
         <a href="{% url 'blog:blog_list' %}"
             class="{%if not current_catgory %}active{% endif %}">
             All Posts
-        </a>
-
-        |
+        </a>|
         
         {%for category in categories%}
-            <a href="{%url 'blog:blog_list' %}?category={{ category.slug }}"
+            <a href="{% url 'blog:blog_list' %}?category={{ category.slug }}"
                 class="{% if current_category and current_category.slug %}active{% endif %}">
                 {{category.name}}
-            </a>
-            |
+            </a>|
+            {%if not category.name %}
+                <h2>No posts found</h2>
+            {% endif %}
         {% endfor %}
 
         <br><hr><br>
@@ -25,7 +25,9 @@
     </div>
 
     {% for post in posts %}
+
         <div class="post-card">
+
             <h2>{{ post.title }}</h2>
             <p class="excerpt">{{ post.excerpt }}</p>
             <small>Published on {{ post.published_date }}</small>
@@ -37,8 +39,22 @@
             </a>
         
         </div>
+
+
         
     {% endfor %}
-    <br>
 
+        <br>
+        <hr>
+        {%if not posts %}
+            <h2>No Posts Found In This Category</h2>
+            <br>
+            <a href="{% url 'blog:blog_list' %}" class="btn btn-primary">
+            
+                Back to All Posts
+            </a>
+        {% endif %}
+
+        <br>
+        <br><hr>
 {% endblock %}
