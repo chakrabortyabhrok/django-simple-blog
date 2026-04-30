@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from blog.models import Post
 from blog.serializers import PostSerializer
+from rest_framework import status
 
 class PostListView(APIView):
     def get(self, request):
@@ -9,3 +10,12 @@ class PostListView(APIView):
         serializer = PostSerializer(posts, many=True)
 
         return Response(serializer.data)
+    
+    def post(self, request):
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+        
