@@ -13,4 +13,3 @@ class PostViewSet(ModelViewSet):
     serializer_class = PostSerializer
 
     lookup_field = 'slug'
-
