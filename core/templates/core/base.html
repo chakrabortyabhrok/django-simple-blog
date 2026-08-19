@@ -1,35 +1,422 @@
-{%load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Django Templates{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
+    <title>{% block title %}Django Learning Project{% endblock %}</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
 </head>
 
-<body>
-    <header>
-        <h1>My Django Learning Project</h1>
-        <p></p>
-        <nav>
-            <a href="{% url 'blog:home' %}">Home</a> &nbsp;|&nbsp;
-            <a href="{% url 'blog:about' %}">About</a>&nbsp;|&nbsp;
-            <a href="{% url 'blog:blog_list' %}">Blog</a>&nbsp;|&nbsp;
-            <a href="{% url 'blog:contact_page' %}">Contact</a>
-        </nav>
+
+<body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+
+
+    <!-- ========================================================= -->
+    <!-- READING PROGRESS -->
+    <!-- ========================================================= -->
+
+    <div
+        id="readingProgress"
+        class="fixed top-0 left-0 z-[100] h-0.5 w-0 bg-blue-500 transition-[width] duration-100"
+    ></div>
+
+
+    <!-- ========================================================= -->
+    <!-- NAVBAR -->
+    <!-- ========================================================= -->
+
+    <header
+        class="sticky top-0 z-50 border-b border-slate-800/80
+               bg-slate-950/90 backdrop-blur-xl"
+    >
+
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+            <div class="flex h-16 items-center justify-between">
+
+                <!-- Brand -->
+                <a
+                    href="{% url 'blog:home' %}"
+                    class="group flex items-center gap-3"
+                >
+
+                    <div
+                        class="flex h-9 w-9 items-center justify-center
+                               rounded-xl border border-slate-800
+                               bg-slate-900
+                               transition-all duration-200
+                               group-hover:border-blue-500/50
+                               group-hover:bg-blue-500/10"
+                    >
+                        <i
+                            class="fas fa-code text-sm text-slate-400
+                                   transition-colors
+                                   group-hover:text-blue-400"
+                        ></i>
+                    </div>
+
+                    <div>
+
+                        <p
+                            class="text-sm font-bold tracking-tight text-white
+                                   transition-colors
+                                   group-hover:text-blue-400"
+                        >
+                            Django Learning Project
+                        </p>
+
+                        <p class="hidden text-[11px] text-slate-500 sm:block">
+                            Python & Django
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <!-- Desktop navigation -->
+                <nav class="hidden items-center gap-1 md:flex">
+
+                    <a
+                        href="{% url 'blog:home' %}"
+                        class="group rounded-lg px-3.5 py-2.5 text-sm font-medium
+                               text-slate-400 transition-all
+                               hover:bg-slate-900 hover:text-white"
+                    >
+                        <i
+                            class="fas fa-house mr-2 text-xs text-slate-500
+                                   transition-colors group-hover:text-blue-400"
+                        ></i>
+                        Home
+                    </a>
+
+
+                    <a
+                        href="{% url 'blog:about' %}"
+                        class="group rounded-lg px-3.5 py-2.5 text-sm font-medium
+                               text-slate-400 transition-all
+                               hover:bg-slate-900 hover:text-white"
+                    >
+                        <i
+                            class="fas fa-circle-info mr-2 text-xs text-slate-500
+                                   transition-colors group-hover:text-blue-400"
+                        ></i>
+                        About
+                    </a>
+
+
+                    <a
+                        href="{% url 'blog:blog_list' %}"
+                        class="group rounded-lg bg-slate-900 px-3.5 py-2.5
+                               text-sm font-medium text-white"
+                    >
+                        <i class="fas fa-newspaper mr-2 text-xs text-blue-400"></i>
+                        Blog
+                    </a>
+
+
+                    <a
+                        href="{% url 'blog:contact_page' %}"
+                        class="group rounded-lg px-3.5 py-2.5 text-sm font-medium
+                               text-slate-400 transition-all
+                               hover:bg-slate-900 hover:text-white"
+                    >
+                        <i
+                            class="fas fa-envelope mr-2 text-xs text-slate-500
+                                   transition-colors group-hover:text-blue-400"
+                        ></i>
+                        Contact
+                    </a>
+
+                </nav>
+
+
+                <!-- Right side -->
+                <div class="hidden items-center gap-3 sm:flex">
+
+                    <div class="h-5 w-px bg-slate-800"></div>
+
+                    <span class="text-xs text-slate-500">
+                        Django
+                    </span>
+
+                </div>
+
+
+                <!-- Mobile menu button -->
+                <button
+                    id="mobileMenuButton"
+                    type="button"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false"
+                    onclick="toggleMobileMenu()"
+                    class="rounded-lg border border-slate-800 bg-slate-900
+                           p-2.5 text-slate-400 transition-all
+                           hover:border-slate-700
+                           hover:bg-slate-800
+                           hover:text-white
+                           md:hidden"
+                >
+                    <i id="mobileMenuIcon" class="fas fa-bars"></i>
+                </button>
+
+            </div>
+
+
+            <!-- Mobile navigation -->
+            <div id="mobileMenu" class="hidden border-t border-slate-800 py-4 md:hidden">
+
+                <nav class="space-y-1">
+
+                    <a
+                        href="{% url 'blog:home' %}"
+                        class="flex items-center gap-3 rounded-lg px-4 py-3
+                               text-sm text-slate-400
+                               transition-colors
+                               hover:bg-slate-900 hover:text-white"
+                    >
+                        <i class="fas fa-house w-4 text-center text-slate-500"></i>
+                        Home
+                    </a>
+
+                    <a
+                        href="{% url 'blog:about' %}"
+                        class="flex items-center gap-3 rounded-lg px-4 py-3
+                               text-sm text-slate-400
+                               transition-colors
+                               hover:bg-slate-900 hover:text-white"
+                    >
+                        <i class="fas fa-circle-info w-4 text-center text-slate-500"></i>
+                        About
+                    </a>
+
+                    <a
+                        href="{% url 'blog:blog_list' %}"
+                        class="flex items-center gap-3 rounded-lg
+                               bg-slate-900 px-4 py-3
+                               text-sm font-medium text-white"
+                    >
+                        <i class="fas fa-newspaper w-4 text-center text-blue-400"></i>
+                        Blog
+                    </a>
+
+                    <a
+                        href="{% url 'blog:contact_page' %}"
+                        class="flex items-center gap-3 rounded-lg px-4 py-3
+                               text-sm text-slate-400
+                               transition-colors
+                               hover:bg-slate-900 hover:text-white"
+                    >
+                        <i class="fas fa-envelope w-4 text-center text-slate-500"></i>
+                        Contact
+                    </a>
+
+                </nav>
+
+            </div>
+
+        </div>
+
     </header>
 
-    <div class="content">
 
-    {% block content %}
-        <p>No Post Found</p>
-    {% endblock %}
-    </div>
+    <!-- ========================================================= -->
+    <!-- MAIN -->
+    <!-- ========================================================= -->
 
-    <footer>
-        <p>&copy; This is a simple Django Learning project</p>
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <div class="py-10 lg:py-14">
+
+            {% block content %}
+                <div class="rounded-2xl border border-slate-800 bg-slate-900/50 p-10 text-center">
+                    <i class="fas fa-file-circle-question text-2xl text-slate-600"></i>
+
+                    <h2 class="mt-4 text-lg font-semibold text-white">
+                        No content found
+                    </h2>
+
+                    <p class="mt-2 text-sm text-slate-500">
+                        There is currently nothing to display here.
+                    </p>
+                </div>
+            {% endblock %}
+
+        </div>
+
+    </main>
+
+
+    <!-- ========================================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================================= -->
+
+    <footer class="border-t border-slate-800">
+
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+
+            <div
+                class="flex flex-col items-center justify-between gap-3
+                       sm:flex-row"
+            >
+
+                <div class="flex items-center gap-2">
+
+                    <i class="fas fa-code text-xs text-blue-500"></i>
+
+                    <span class="text-sm text-slate-500">
+                        Django Learning Project
+                    </span>
+
+                </div>
+
+                <p class="text-xs text-slate-600">
+                    &copy; {% now "Y" %} · Built with Django
+                </p>
+
+            </div>
+
+        </div>
+
     </footer>
+
+
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================================= -->
+
+    <script>
+
+        // ---------------------------------------------------------
+        // Mobile navigation
+        // ---------------------------------------------------------
+
+        function toggleMobileMenu() {
+
+            const menu = document.getElementById('mobileMenu');
+            const button = document.getElementById('mobileMenuButton');
+            const icon = document.getElementById('mobileMenuIcon');
+
+            const isOpen = !menu.classList.contains('hidden');
+
+            menu.classList.toggle('hidden');
+
+            button.setAttribute(
+                'aria-expanded',
+                String(!isOpen)
+            );
+
+            if (isOpen) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        }
+
+
+        // ---------------------------------------------------------
+        // Close mobile menu when clicking outside
+        // ---------------------------------------------------------
+
+        document.addEventListener('click', function (event) {
+
+            const menu = document.getElementById('mobileMenu');
+            const button = document.getElementById('mobileMenuButton');
+
+            if (
+                !menu.contains(event.target) &&
+                !button.contains(event.target)
+            ) {
+
+                menu.classList.add('hidden');
+
+                button.setAttribute(
+                    'aria-expanded',
+                    'false'
+                );
+
+                document
+                    .getElementById('mobileMenuIcon')
+                    .classList.remove('fa-xmark');
+
+                document
+                    .getElementById('mobileMenuIcon')
+                    .classList.add('fa-bars');
+            }
+
+        });
+
+
+        // ---------------------------------------------------------
+        // Reading progress
+        // ---------------------------------------------------------
+
+        function updateReadingProgress() {
+
+            const progressBar =
+                document.getElementById('readingProgress');
+
+            if (!progressBar) return;
+
+            const scrollTop = window.scrollY;
+
+            const documentHeight =
+                document.documentElement.scrollHeight -
+                window.innerHeight;
+
+            if (documentHeight <= 0) {
+                progressBar.style.width = '0%';
+                return;
+            }
+
+            const progress =
+                (scrollTop / documentHeight) * 100;
+
+            progressBar.style.width = `${progress}%`;
+        }
+
+
+        window.addEventListener(
+            'scroll',
+            updateReadingProgress,
+            { passive: true }
+        );
+
+    </script>
+
+
+    {% block extra_js %}{% endblock %}
+
 </body>
+
 </html>
