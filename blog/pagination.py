@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator
 from .models import Post , Category
+from django.shortcuts import render
 
 def blog_list(request):
 
